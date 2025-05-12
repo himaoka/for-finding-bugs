@@ -1,0 +1,60 @@
+<template>
+    <template if:true={records}>
+        <table class="slds-table slds-table_bordered slds-table_striped">
+            <thead>
+                <tr>
+                    <template for:each={columns} for:item="column">
+                        <th key={column.fieldName} scope="col">
+                            <div class="slds-truncate" title={column.label}>{column.label}</div>
+                        </th>
+                    </template>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={records} for:item="record">
+                    <tr key={record.Id}>
+                        <td>
+                            <div class="slds-truncate" title={record.Name}>{record.Name}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={record.Id}>{record.Id}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={record.MailingState}>{record.MailingState}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={record.MailingStreet}>{record.MailingStreet}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={record.CreatedDate}>{record.CreatedDate}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={record.Phone}>{record.Phone}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={record.Website}>{record.Website}</div>
+                        </td>
+                        <td>
+                            <lightning-button label="詳細" data-id={record.Id} onclick={handleRowAction}></lightning-button>
+                            <lightning-button class="slds-m-left_xx-small" label="編集" data-id={record.Id} onclick={handleRowAction}></lightning-button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+    <template if:true={error}>
+        <p>エラーが発生しました: {error}</p>
+    </template>
+
+    <div class="slds-m-top_medium slds-grid slds-align_items-center">
+        <div class="slds-col slds-size_1-1 slds-medium-size_auto">
+            <p class="slds-m-bottom_none">この内容を確認して問題なければそれぞれのボタンを押してください</p>
+        </div>
+        <div class="slds-col slds-size_1-1 slds-medium-size_auto slds-m-top_small slds-medium-m-top_none slds-align_right">
+            <lightning-button label="私は確認をしました。問題ありません。" onclick={handleApproval}></lightning-button>
+            <lightning-button class="slds-m-left_small" label="あいつが確認をしていません。問題があります。" onclick={handleRejection}></lightning-button>
+        </div>
+    </div>
+</template>

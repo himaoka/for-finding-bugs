@@ -1,0 +1,26 @@
+<template>
+    <template if:true={records}>
+        <lightning-datatable
+            key-field="Id"
+            data={records}
+            columns={columns}
+            onsave={handleSave}
+            draft-values={draftValues}
+            onrowaction={handleRowAction}
+        >
+        </lightning-datatable>
+    </template>
+    <template if:true={error}>
+        <p>エラーが発生しました: {error}</p>
+    </template>
+
+    <div class="slds-m-top_medium slds-grid slds-align_items-center">
+        <div class="slds-col slds-size_1-1 slds-medium-size_auto">
+            <p class="slds-m-bottom_none">この内容を確認して問題なければそれぞれのボタンを押してください</p>
+        </div>
+        <div class="slds-col slds-size_1-1 slds-medium-size_auto slds-m-top_small slds-medium-m-top_none slds-align_right">
+            <lightning-button label="私は確認をしました。問題ありません。" onclick={handleApproval}></lightning-button>
+            <lightning-button class="slds-m-left_small" label="あいつが確認をしていません。問題があります。" onclick={handleRejection}></lightning-button>
+        </div>
+    </div>
+</template>

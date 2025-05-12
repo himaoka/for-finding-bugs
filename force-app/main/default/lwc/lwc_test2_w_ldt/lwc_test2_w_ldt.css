@@ -1,0 +1,11 @@
+lightning-card {
+    padding: 1rem;
+}
+
+p {
+    margin-top: 1rem;
+}
+
+lightning-button {
+    margin: 1rem 0.5rem;
+}
